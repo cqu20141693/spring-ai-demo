@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: spring-ai-demo
+
+  ai:
+    image:
+      observations:
+        # the image prompt data in the observations
+        include-prompt: true
+    chat:
+      observations:
+        #chat prompt,completion data and error in the observations
+        include-prompt: true
+        include-completion: true
+        include-error-logging: true
+      client:
+        enabled: true # 可以禁用，指定一模型
+        observations:
+          include-input: true # the input content in the observations
+    vector-store:
+      elasticsearch:
+        index-name: spring-ai
+        initialize-schema: true
+        dimensions: 1536
+        similarity: cosine
+      observations:
+        include-query-response: true #  vector search response data in the observations
+    openai:
+      api-key: sk-685Z1mkA5feR2Xxrhz2UdyyutQlnrfmkCwVbJ50xVTy7sq4E
+      base-url: https://api.chatanywhere.tech
+      embedding:
+        enabled: true
+      image:
+        enabled: true
+        options:
+          model: DEFAULT_IMAGE_MODEL
+
+  elasticsearch:
+    uris: http://localhost:9200
+    username: elastic
+    password: elastic
